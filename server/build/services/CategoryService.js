@@ -6,5 +6,9 @@ class CategoryService {
         const result = await models_1.CategoryModel.create({ data: categoryData });
         return result;
     }
+    async getCategories() {
+        const result = await models_1.CategoryModel.findMany({});
+        return result;
+    }
 }
 exports.default = new CategoryService();
