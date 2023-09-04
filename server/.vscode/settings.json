@@ -1,0 +1,5 @@
+{
+  "prisma.fileWatcher": true,
+  "prettier.configPath": ".prettierrc",
+  "editor.formatOnSave": true
+}
