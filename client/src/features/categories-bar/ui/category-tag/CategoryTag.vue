@@ -10,7 +10,11 @@ defineProps<{
 <template>
   <div class="category-tag" :class="{ active: isActive }">
     <div class="category-tag__container">
-      <img class="category-tag__icon" :src="getMainServerUrl() + category.icon" />
+      <img
+        class="category-tag__icon"
+        :src="getMainServerUrl() + category.icon"
+        v-if="category.icon"
+      />
       <p class="category-tag__titile">{{ category.name }}</p>
     </div>
   </div>

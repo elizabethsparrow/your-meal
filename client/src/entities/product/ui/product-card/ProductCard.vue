@@ -15,6 +15,7 @@ defineProps<{ product: IProduct }>()
           :src="getMainServerUrl() + product.cover"
           alt=""
         />
+        <span class="cover__no-image" v-else></span>
       </div>
 
       <p class="product-card__cost">{{ product.cost }}₽</p>
@@ -29,18 +30,25 @@ defineProps<{ product: IProduct }>()
 
 <style lang="scss" scoped>
 .product-card {
-  @apply p-3 max-w-[300px] bg-white rounded-[18px];
+  @apply p-3 bg-white rounded-[18px];
 
   &__cover {
     overflow: hidden;
     width: 100%;
-    max-height: 220px;
+    height: 220px;
     border-radius: 12px;
 
     .cover__image {
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+
+    .cover__no-image {
+      display: block;
+      width: 100%;
+      height: 220px;
+      @apply bg-gray-100;
     }
   }
 

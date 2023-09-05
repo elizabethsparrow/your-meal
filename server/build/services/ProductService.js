@@ -14,6 +14,12 @@ class ProductService {
         });
         return result.map((el) => new dtos_1.ProductDTO(el));
     }
+    async getProductsByCategoryId(ctegoryId) {
+        let products = await models_1.ProductModel.findMany({
+            where: { category: { id: ctegoryId } },
+        });
+        return products;
+    }
     async createNewProduct(productData, categoryId, cover) {
         let product;
         let coverFileName;

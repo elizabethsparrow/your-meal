@@ -14,6 +14,13 @@ class ProductService {
     return result.map((el) => new ProductDTO(el));
   }
 
+  async getProductsByCategoryId(ctegoryId: number) {
+    let products = await ProductModel.findMany({
+      where: { category: { id: ctegoryId } },
+    });
+    return products;
+  }
+
   async createNewProduct(
     productData: IProductCreate,
     categoryId?: number,

@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { CategoryTag } from './index'
-import { CategoryAPI } from '@/entities/category'
+import { CategoryAPI, type ICategory } from '@/entities/category'
 import { ref } from 'vue'
 
 const categories = ref(),
   mainCategoryId = ref()
 
+const getCategoryById = (id: number) => categories.value.find((el: ICategory) => el.id === id)
+
 const onLoad = async () => {
   categories.value = await CategoryAPI.getCategories()
   mainCategoryId.value = categories.value[0]?.id
+  emit('change-main-category', categories.value[0])
 }
 const onClickCategoryTag = (id: number) => {
   mainCategoryId.value = id
-  emit('change-main-category', mainCategoryId.value)
+  emit('change-main-category', getCategoryById(id))
 }
 
 onLoad()
@@ -31,4 +34,8 @@ const emit = defineEmits(['change-main-category'])
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.categories-bar {
+  @apply flex gap-6;
+}
+</style>

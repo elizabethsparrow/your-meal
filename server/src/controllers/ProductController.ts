@@ -6,6 +6,22 @@ class ProductController {
     const products = await ProductService.getAllProducts();
     res.send(products);
   }
+  async getProductsByCategoryId(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    try {
+      if (req.query.categoryId) {
+        const result = await ProductService.getProductsByCategoryId(
+          +req.query.categoryId
+        );
+        res.send(result);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
   async createProduct(req: Request, res: Response, next: NextFunction) {
     let { name, description, cost, weight } = req.body;
     const product = await ProductService.createNewProduct(

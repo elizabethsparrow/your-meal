@@ -1,5 +1,4 @@
-export enum EnumButtonSizes {
-  big,
-  middle,
-  small
+export enum EnumButtonStyles {
+  primary,
+  secondary
 }
