@@ -1,15 +1,17 @@
 import { IProduct, IProductCreate } from "../types";
 
 export class ProductDTO {
-  id;
+  id?: number;
   name;
   description;
   category;
+  cover;
 
-  constructor(options: IProduct | IProductCreate) {
+  constructor(options: IProduct) {
     this.id = options.id;
     this.name = options.name;
     this.description = options.description;
     this.category = options.category;
+    this.cover = options.cover;
   }
 }

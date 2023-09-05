@@ -17,6 +17,7 @@ export default defineConfig({
         additionalData: `
           @import "@/shared/styles/variables.scss";
           @import "@/shared/styles/normalize.scss";
+          @import "@/shared/styles/main.scss";
         `
       }
     }

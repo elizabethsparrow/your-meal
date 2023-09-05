@@ -7,6 +7,7 @@ class ProductDTO {
         this.name = options.name;
         this.description = options.description;
         this.category = options.category;
+        this.cover = options.cover;
     }
 }
 exports.ProductDTO = ProductDTO;

@@ -1,7 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../models");
 const dtos_1 = require("../dtos");
+const path_1 = __importDefault(require("path"));
+const uuid_1 = require("uuid");
 class ProductService {
     async getAllProducts() {
         const result = await models_1.ProductModel.findMany({
@@ -9,16 +14,22 @@ class ProductService {
         });
         return result.map((el) => new dtos_1.ProductDTO(el));
     }
-    async createNewProduct(productData, categoryId) {
+    async createNewProduct(productData, categoryId, cover) {
         let product;
-        if (categoryId) {
-            product = {
-                ...productData,
-                category: { connect: { id: categoryId } },
-            };
+        let coverFileName;
+        if (cover) {
+            coverFileName = (0, uuid_1.v4)() + cover.name;
+            let coverPath = path_1.default.join(__dirname, "../static", "products-covers", coverFileName);
+            await cover?.mv(coverPath);
+            console.log(coverFileName);
         }
-        else {
-            product = productData;
+        product = { ...productData, category: undefined };
+        if (categoryId) {
+            product.category = { connect: { id: categoryId } };
+        }
+        console.log(coverFileName);
+        if (coverFileName != null) {
+            product.cover = "/products-covers/" + coverFileName;
         }
         const result = await models_1.ProductModel.create({
             data: product,
@@ -26,8 +37,7 @@ class ProductService {
                 category: true,
             },
         });
-        console.log(result);
-        return new dtos_1.ProductDTO(result);
+        return { ...new dtos_1.ProductDTO(result) };
     }
 }
 exports.default = new ProductService();

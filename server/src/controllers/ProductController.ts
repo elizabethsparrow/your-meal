@@ -8,8 +8,13 @@ class ProductController {
   }
   async createProduct(req: Request, res: Response, next: NextFunction) {
     const product = await ProductService.createNewProduct(
-      req.body?.product,
-      req.body?.categoryId
+      {
+        name: req.body?.name,
+        description: req.body?.description,
+      },
+      req.body?.categoryId,
+      // @ts-ignore
+      req.files?.cover
     );
     res.send(product);
   }
