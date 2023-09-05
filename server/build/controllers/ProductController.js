@@ -7,10 +7,8 @@ class ProductController {
         res.send(products);
     }
     async createProduct(req, res, next) {
-        const product = await services_1.ProductService.createNewProduct({
-            name: req.body?.name,
-            description: req.body?.description,
-        }, req.body?.categoryId, 
+        let { name, description, cost, weight } = req.body;
+        const product = await services_1.ProductService.createNewProduct({ name, description, cost: +cost, weight: +weight }, +req.body?.categoryId, 
         // @ts-ignore
         req.files?.cover);
         res.send(product);

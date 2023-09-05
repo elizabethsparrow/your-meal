@@ -18,14 +18,26 @@ defineProps<{
 
 <style lang="scss" scoped>
 .category-tag {
-  @apply inline-block rounded-full bg-white py-2 px-4 cursor-pointer;
+  @apply inline-block rounded-full bg-white py-2 px-4 cursor-pointer border border-solid border-transparent;
+
+  &:hover {
+    @apply border border-solid border-orange;
+  }
 
   &.active {
     @apply bg-yellow;
+
+    &:hover {
+      @apply border-transparent;
+    }
   }
 
   &__container {
     @apply flex items-center gap-2;
+  }
+
+  &__icon {
+    @apply max-w-[24px] max-h-[24px];
   }
 }
 </style>

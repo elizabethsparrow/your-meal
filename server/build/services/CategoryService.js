@@ -6,7 +6,7 @@ class CategoryService {
         return models_1.CategoryModel.create({ data: categoryData });
     }
     getCategories() {
-        return models_1.CategoryModel.findMany({});
+        return models_1.CategoryModel.findMany();
     }
 }
 exports.default = new CategoryService();

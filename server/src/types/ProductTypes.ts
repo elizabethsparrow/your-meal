@@ -6,6 +6,8 @@ export interface IProduct {
   description: string;
   category?: ICategory | null;
   cover?: string | null;
+  weight?: number | null;
+  cost?: number | null;
 }
 
 export interface IProductCreate extends Omit<IProduct, "id"> {}

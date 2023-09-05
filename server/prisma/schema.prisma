@@ -24,4 +24,6 @@ model Product {
   category    Category? @relation(fields: [categoryId], references: [id])
   categoryId  Int?
   cover       String?
+  weight      Int?
+  cost        Int?
 }

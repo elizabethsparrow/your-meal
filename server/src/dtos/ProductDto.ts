@@ -6,6 +6,8 @@ export class ProductDTO {
   description;
   category;
   cover;
+  weight;
+  cost;
 
   constructor(options: IProduct) {
     this.id = options.id;
@@ -13,5 +15,7 @@ export class ProductDTO {
     this.description = options.description;
     this.category = options.category;
     this.cover = options.cover;
+    this.weight = options.weight;
+    this.cost = options.cost;
   }
 }

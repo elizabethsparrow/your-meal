@@ -8,6 +8,8 @@ class ProductDTO {
         this.description = options.description;
         this.category = options.category;
         this.cover = options.cover;
+        this.weight = options.weight;
+        this.cost = options.cost;
     }
 }
 exports.ProductDTO = ProductDTO;

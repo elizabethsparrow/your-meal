@@ -17,17 +17,15 @@ class ProductService {
     async createNewProduct(productData, categoryId, cover) {
         let product;
         let coverFileName;
+        product = { ...productData, category: undefined };
         if (cover) {
             coverFileName = (0, uuid_1.v4)() + cover.name;
             let coverPath = path_1.default.join(__dirname, "../static", "products-covers", coverFileName);
             await cover?.mv(coverPath);
-            console.log(coverFileName);
         }
-        product = { ...productData, category: undefined };
         if (categoryId) {
             product.category = { connect: { id: categoryId } };
         }
-        console.log(coverFileName);
         if (coverFileName != null) {
             product.cover = "/products-covers/" + coverFileName;
         }

@@ -8,7 +8,7 @@ class CategoryService {
   }
 
   getCategories() {
-    return CategoryModel.findMany({});
+    return CategoryModel.findMany();
   }
 }
 
