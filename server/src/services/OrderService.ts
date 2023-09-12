@@ -1,5 +1,6 @@
 import { Request } from "express";
 import { OrderModel } from "../models";
+import { IProductOrder } from "../types/ProductOrderTypes";
 
 class OrderService {
   async getAllOrders() {
@@ -10,10 +11,6 @@ class OrderService {
   }
 
   async createAllOrder(req: Request) {
-    interface IProductOrder {
-      productId: number;
-      count: number;
-    }
     interface IOrderRequestBody {
       product_orders: IProductOrder[];
     }
