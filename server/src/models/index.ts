@@ -1,4 +1,5 @@
 import ProductModel from "./ProductModel";
 import CategoryModel from "./CategoryModel";
+import OrderModel from "./OrderModel";
 
-export { ProductModel, CategoryModel };
+export { ProductModel, CategoryModel, OrderModel };

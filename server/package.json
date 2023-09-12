@@ -4,7 +4,7 @@
   "description": "server",
   "main": "build/main.js",
   "scripts": {
-    "start": "nodemon build/main.js",
+    "start": "npx nodemon",
     "build": "tsc"
   },
   "author": "",
@@ -15,7 +15,6 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.0",
-    "nodemon": "^3.0.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -24,6 +23,7 @@
     "@types/express-fileupload": "^1.4.1",
     "@types/node": "^20.5.7",
     "@types/uuid": "^9.0.3",
+    "nodemon": "^3.0.1",
     "prisma": "^5.2.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
