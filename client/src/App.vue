@@ -14,6 +14,7 @@
   max-height: 100vh;
   height: 100%;
   background: $mainBackground;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

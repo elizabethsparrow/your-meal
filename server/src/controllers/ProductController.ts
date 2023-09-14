@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ProductService } from "../services";
+import { UploadedFile } from "express-fileupload";
 
 class ProductController {
   async getAllProducts(req: Request, res: Response, next: NextFunction) {

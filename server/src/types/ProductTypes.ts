@@ -8,6 +8,8 @@ export interface IProduct {
   cover?: string | null;
   weight?: number | null;
   cost?: number | null;
+  ingredients?: string | null;
+  kilocalory?: number | null;
 }
 
 export interface IProductCreate extends Omit<IProduct, "id"> {}
