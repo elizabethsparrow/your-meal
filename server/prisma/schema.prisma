@@ -15,7 +15,6 @@ model Category {
   name    String
   icon    String
   Product Product[]
-  Order   Order[]
 }
 
 model Product {
@@ -28,6 +27,8 @@ model Product {
   weight       Int?
   cost         Int?
   orderId      Int?
+  kilocalory   Int?
+  ingredients  String?
   ProductOrder ProductOrder[]
 }
 
@@ -42,14 +43,6 @@ model ProductOrder {
 
 model Order {
   id           Int            @id @default(autoincrement())
-  name         String
-  description  String
-  category     Category?      @relation(fields: [categoryId], references: [id])
-  categoryId   Int?
-  cover        String?
-  weight       Int?
-  cost         Int?
-  kilocalory   Int?
-  ingredients  String?
-  ProductOrder ProductOrder[]
+  productOrder ProductOrder[]
+  create_date  DateTime?
 }

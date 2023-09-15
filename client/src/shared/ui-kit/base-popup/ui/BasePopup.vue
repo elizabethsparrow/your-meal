@@ -11,18 +11,23 @@ const open = () => {
     reject.value = rej
     isOpen.value = true
   })
+  emit('open')
   return popupPromise
 }
 
 const confirm = () => {
   resolve.value(true)
   isOpen.value = false
+  emit('confirm')
 }
 
 const close = () => {
   resolve.value(false)
   isOpen.value = false
+  emit('close')
 }
+
+const emit = defineEmits(['close', 'open', 'confirm'])
 
 defineExpose({ open, confirm, close })
 </script>

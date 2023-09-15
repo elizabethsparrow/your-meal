@@ -3,10 +3,12 @@ import { BasePopup, BaseCounter, BaseButton, EnumButtonStyles } from '@/shared/u
 import { ref } from 'vue'
 import type { IProduct } from '@/entities/product'
 import { getMainServerUrl } from '@/shared/lib/helpers'
+import { useCartStore } from '@/entities/cart'
 
 const refBasePopup = ref(),
   mainProduct = ref<IProduct>(),
-  productCount = ref<number>(1)
+  productCount = ref<number>(1),
+  { addProductToCart } = useCartStore()
 
 const open = (product: IProduct) => {
   mainProduct.value = product
@@ -17,7 +19,7 @@ defineExpose({ open, close: refBasePopup.value?.close })
 </script>
 
 <template>
-  <base-popup class="product-popup" ref="refBasePopup">
+  <base-popup @close="() => (productCount = 1)" class="product-popup" ref="refBasePopup">
     <div class="pdoduct-popup__container" v-if="mainProduct">
       <h1 class="product-popup__title">{{ mainProduct.name }}</h1>
       <div class="product-popup__content">
@@ -31,7 +33,16 @@ defineExpose({ open, close: refBasePopup.value?.close })
             />
             <img src="/default-product.png" v-else />
           </div>
-          <base-button class="left-block__button" :button-style="EnumButtonStyles.primary">
+          <base-button
+            @click="
+              () =>
+                mainProduct && productCount
+                  ? addProductToCart({ product: mainProduct, count: productCount })
+                  : null
+            "
+            class="left-block__button"
+            :button-style="EnumButtonStyles.primary"
+          >
             Добавить
           </base-button>
         </div>

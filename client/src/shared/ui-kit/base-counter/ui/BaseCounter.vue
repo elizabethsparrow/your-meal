@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, toRefs, onMounted } from 'vue'
+import { ref, watch, toRefs, onBeforeMount } from 'vue'
 
 const props = defineProps<{ counter: number }>(),
   { counter } = toRefs(props)
@@ -8,17 +8,17 @@ const updateCounter = (val: number) => {
   emit('update:counter', val)
 }
 
-onMounted(() => {
-  updateCounter(1)
-}),
-  watch(
-    () => counter.value,
-    () => {
-      if (counter.value <= 0) updateCounter(1)
+watch(
+  () => counter.value,
+  () => {
+    if (counter.value <= 0) {
+      emit('nullable')
+      updateCounter(1)
     }
-  )
+  }
+)
 
-const emit = defineEmits(['update:counter'])
+const emit = defineEmits(['update:counter', 'nullable'])
 </script>
 
 <template>

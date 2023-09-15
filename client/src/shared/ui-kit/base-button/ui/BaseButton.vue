@@ -11,7 +11,9 @@ defineProps<{ buttonStyle: EnumButtonStyles }>()
     :class="`base-button_${EnumButtonStyles[buttonStyle]}`"
   >
     <div class="base-button__container">
-      <slot />
+      <p>
+        <slot />
+      </p>
     </div>
   </button>
 </template>
@@ -25,11 +27,20 @@ defineProps<{ buttonStyle: EnumButtonStyles }>()
   }
 
   &_primary {
-    @apply bg-orange text-white hover:bg-yellow transition-[.2s] active:bg-orangeDark;
+    @apply bg-orange hover:bg-yellow transition-[.2s] active:bg-orangeDark;
+    * {
+      @apply text-white;
+    }
   }
 
   &_secondary {
-    @apply bg-gray-100 text-black hover:bg-yellow hover:text-white active:text-white transition-[.2s] active:bg-orangeDark;
+    @apply bg-gray-100 text-black hover:bg-yellow transition-[.2s] active:bg-orangeDark;
+    &:hover * {
+      @apply text-white;
+    }
+    &:active * {
+      @apply text-white;
+    }
   }
 }
 </style>

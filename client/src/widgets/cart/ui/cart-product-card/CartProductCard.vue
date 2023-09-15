@@ -5,7 +5,7 @@ import { BaseCounter } from '@/shared/ui-kit'
 
 defineProps<{ cartProduct: ICartProduct; count: number }>()
 
-const emit = defineEmits(['update:count'])
+const emit = defineEmits(['update:count', 'delete'])
 </script>
 
 <template>
@@ -30,6 +30,7 @@ const emit = defineEmits(['update:count'])
       </div>
       <div class="cart-product-card__count-block">
         <base-counter
+          @nullable="() => emit('delete')"
           @update:counter="(val: number) => emit('update:count', val)"
           :counter="cartProduct.count"
         />
