@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type ICartProduct, useCartStore } from '@/entities/cart'
 import { CartProductCard } from '../index'
-import { computed, ref, toRefs } from 'vue'
+import { computed, toRefs } from 'vue'
 
 const { cart } = toRefs(useCartStore()),
   { deleteProductFromCart } = useCartStore()
@@ -10,13 +10,11 @@ const productsCount = computed(() =>
   cart.value.reduce((acc: number, curr: ICartProduct) => (curr.count ? acc + curr.count : acc), 0)
 )
 
-const productTotalCost = computed(() =>
-  cart.value.reduce(
-    (acc: number, curr: ICartProduct) =>
-      curr.product?.cost ? acc + curr.product.cost * curr.count : acc,
-    0
-  )
-)
+const productTotalCost = computed(() => {
+  const reduceCallback = (acc: number, curr: ICartProduct) =>
+    curr.product?.cost ? acc + curr.product.cost * curr.count : acc
+  return cart.value.reduce(reduceCallback, 0)
+})
 </script>
 
 <template>
@@ -37,7 +35,7 @@ const productTotalCost = computed(() =>
           :cart-product="product"
         />
       </div>
-      <div class="cart-component__total-cost-block">
+      <div class="cart-component__total-cost-block" v-if="productTotalCost > 0">
         <p class="total-cost-block__title">Итого</p>
         <p class="total-cost-block__cost-value">{{ productTotalCost }}₽</p>
       </div>
