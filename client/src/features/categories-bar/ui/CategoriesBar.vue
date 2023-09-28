@@ -3,8 +3,8 @@ import { CategoryTag } from './index'
 import { CategoryAPI, type ICategory } from '@/entities/category'
 import { ref } from 'vue'
 
-const categories = ref(),
-  mainCategoryId = ref()
+const categories = ref<ICategory[]>(),
+  mainCategoryId = ref<number>()
 
 const getCategoryById = (id: number) => categories.value.find((el: ICategory) => el.id === id)
 
@@ -27,6 +27,7 @@ const emit = defineEmits(['change-main-category'])
   <div class="categories-bar">
     <category-tag
       v-for="category in categories"
+      :key="category.id"
       :category="category"
       :is-active="mainCategoryId == category.id"
       @click="onClickCategoryTag(category.id)"

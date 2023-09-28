@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type IProduct } from '../../index'
-import { getMainServerUrl } from '@/shared/lib/helpers'
+import { getMainServerUrl } from '../../../../shared/lib/helpers'
 
 defineProps<{ product: IProduct }>()
 </script>
