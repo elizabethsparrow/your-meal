@@ -27,6 +27,8 @@ model Product {
   weight       Int?
   cost         Int?
   orderId      Int?
+  kilocalory   Int?
+  ingredients  String?
   ProductOrder ProductOrder[]
 }
 
@@ -40,7 +42,7 @@ model ProductOrder {
 }
 
 model Order {
-  id            Int            @id @default(autoincrement())
-  product_order ProductOrder[]
-  create_date   DateTime
+  id           Int            @id @default(autoincrement())
+  productOrder ProductOrder[]
+  create_date  DateTime?
 }

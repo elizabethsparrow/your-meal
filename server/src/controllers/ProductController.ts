@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ProductService } from "../services";
+import { UploadedFile } from "express-fileupload";
 
 class ProductController {
   async getAllProducts(req: Request, res: Response, next: NextFunction) {
@@ -23,9 +24,15 @@ class ProductController {
     }
   }
   async createProduct(req: Request, res: Response, next: NextFunction) {
-    let { name, description, cost, weight } = req.body;
+    let { name, description, cost, weight, kilocalory } = req.body;
     const product = await ProductService.createNewProduct(
-      { name, description, cost: +cost, weight: +weight },
+      {
+        name,
+        description,
+        cost: +cost,
+        weight: +weight,
+        kilocalory: +kilocalory,
+      },
       +req.body?.categoryId,
       // @ts-ignore
       req.files?.cover
