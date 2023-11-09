@@ -18,6 +18,7 @@ const emit = defineEmits(['update:count', 'delete'])
           alt=""
           class="cart-product-card__cover"
         />
+        <img src="/default-product.png" v-else />
       </div>
       <div class="cart-product-card__information-block">
         <p class="cart-product-card__text">

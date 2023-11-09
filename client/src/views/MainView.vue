@@ -28,7 +28,7 @@ watch(
     <div class="main-view">
       <div class="main-view__container">
         <product-popup ref="refProductPopup" class="top-0 left-0" />
-        <categories-bar @change-main-category="(value) => (mainCategory = value)" />
+        <categories-bar class="my-3" @change-main-category="(value) => (mainCategory = value)" />
         <div class="main-view__content">
           <cart-component class="main-view__cart"></cart-component>
           <div class="main-view__right-part">
