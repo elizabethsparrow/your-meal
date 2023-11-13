@@ -5,7 +5,7 @@ import { IProductOrder } from "../types/ProductOrderTypes";
 class OrderService {
   async getAllOrders() {
     const result = await OrderModel.findMany({
-      include: { productOrder: true },
+      include: { product_order: true },
     });
     return result;
   }
@@ -30,12 +30,12 @@ class OrderService {
     const result = await OrderModel.create({
       data: {
         create_date: dateNow,
-        productOrder: {
+        product_order: {
           create: productData,
         },
       },
       include: {
-        productOrder: true,
+        product_order: true,
       },
     });
     return result;

@@ -15,6 +15,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
+          @import "@/shared/styles/primevue.normalize.scss";
           @import "@/shared/styles/variables.scss";
           @import "@/shared/styles/normalize.scss";
           @import "@/shared/styles/main.scss";

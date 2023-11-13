@@ -6,7 +6,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './shared/router'
 
-import 'primevue/resources/themes/vela-orange/theme.css'
+import 'primevue/resources/themes/saga-orange/theme.css'
 import PrimeVue from 'primevue/config'
 import primevueComponentsConf from './app/conf/primevue-components.conf'
 

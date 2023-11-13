@@ -6,7 +6,7 @@ import { ref } from 'vue'
 const categories = ref<ICategory[]>(),
   mainCategoryId = ref<number>()
 
-const getCategoryById = (id: number) => categories.value.find((el: ICategory) => el.id === id)
+const getCategoryById = (id: number) => categories.value?.find((el: ICategory) => el.id === id)
 
 const onLoad = async () => {
   categories.value = await CategoryAPI.getCategories()

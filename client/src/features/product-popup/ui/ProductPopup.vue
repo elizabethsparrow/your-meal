@@ -70,7 +70,10 @@ defineExpose({ open, close: refBasePopup.value?.close })
   </base-popup>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.base-popup__container {
+  padding: 24px !important;
+}
 .product-popup {
   &__container {
   }

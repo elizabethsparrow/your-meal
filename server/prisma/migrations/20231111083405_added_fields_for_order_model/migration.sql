@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Order" ADD COLUMN "apartment" TEXT;
+ALTER TABLE "Order" ADD COLUMN "floor" TEXT;
+ALTER TABLE "Order" ADD COLUMN "house" TEXT;
+ALTER TABLE "Order" ADD COLUMN "intercom" INTEGER;
+ALTER TABLE "Order" ADD COLUMN "name" TEXT;
+ALTER TABLE "Order" ADD COLUMN "phone" INTEGER;
+ALTER TABLE "Order" ADD COLUMN "street" TEXT;

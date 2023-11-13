@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { type ICartProduct, useCartStore } from '@/entities/cart'
 import { CartProductCard } from '../index'
-import { computed, toRefs } from 'vue'
+import { computed, nextTick, ref, toRefs } from 'vue'
+import { BaseButton, EnumButtonStyles } from '@/shared/ui-kit'
+import { OrderPopup } from '@/features/order-popup'
 
 const { cart } = toRefs(useCartStore()),
-  { deleteProductFromCart } = useCartStore()
+  { deleteProductFromCart } = useCartStore(),
+  refOrderPopup = ref(),
+  isLoad = ref(false)
 
 const productsCount = computed(() =>
   cart.value.reduce((acc: number, curr: ICartProduct) => (curr.count ? acc + curr.count : acc), 0)
@@ -15,10 +19,23 @@ const productTotalCost = computed(() => {
     curr.product?.cost ? acc + curr.product.cost * curr.count : acc
   return cart.value.reduce(reduceCallback, 0)
 })
+
+const onLoad = async () => {
+  await nextTick()
+  isLoad.value = true
+  await nextTick()
+  refOrderPopup.value?.open()
+}
+
+onLoad()
 </script>
 
 <template>
   <div class="cart-component">
+    <teleport to=".main-view" v-if="isLoad">
+      <order-popup ref="refOrderPopup"></order-popup>
+    </teleport>
+
     <div class="cart-component__container">
       <div class="cart-component__header">
         <h2 class="cart-component__header-titile">Корзина</h2>
@@ -40,6 +57,7 @@ const productTotalCost = computed(() => {
         <p class="total-cost-block__cost-value">{{ productTotalCost }}₽</p>
       </div>
     </div>
+    <base-button :button-style="EnumButtonStyles.primary"> Оформить заказ </base-button>
   </div>
 </template>
 
