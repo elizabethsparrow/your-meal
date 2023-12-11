@@ -24,6 +24,9 @@ const onLoad = async () => {
   await nextTick()
   isLoad.value = true
   await nextTick()
+}
+
+const onClickCreateOrder = () => {
   refOrderPopup.value?.open()
 }
 
@@ -57,7 +60,9 @@ onLoad()
         <p class="total-cost-block__cost-value">{{ productTotalCost }}₽</p>
       </div>
     </div>
-    <base-button :button-style="EnumButtonStyles.primary"> Оформить заказ </base-button>
+    <base-button :button-style="EnumButtonStyles.primary" @click="onClickCreateOrder">
+      Оформить заказ
+    </base-button>
   </div>
 </template>
 
